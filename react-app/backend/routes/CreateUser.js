@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
@@ -18,12 +19,18 @@ router.post(
     async (req, res) => {
         const result = validationResult(req);
         if (!result.isEmpty()) {
-            console.log(result.array());
             return res.status(400).json({ errors: result.array() });
         }
 
         try {
-            await User.create(req.body);
+            const salt = await bcrypt.genSalt(10);
+
+            await User.create({
+                name: req.body.name,
+                location: req.body.location,
+                email: req.body.email,
+                password: await bcrypt.hash(req.body.password, salt),
+            });
 
             res.json({ success: true });
         } catch (error) {
