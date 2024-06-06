@@ -1,12 +1,9 @@
 import React from 'react';
 
-export default function SearchBar() {
+export default function SearchBar({ value, onChange: handleChange }) {
     return (
-        <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-success" type="submit">
-                Search
-            </button>
-        </form>
+        <div className="d-flex" role="search">
+            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={value} onChange={(e) => handleChange(e.target.value)} />
+        </div>
     );
 }

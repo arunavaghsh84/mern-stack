@@ -1,7 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
+
     return (
         <nav className="navbar navbar-dark navbar-expand-lg bg-success">
             <div className="container-fluid">
@@ -22,18 +29,19 @@ export default function Navbar() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/">
-                                Home
-                            </Link>
+                            <Link className="nav-link active" aria-current="page" to="/"> Home </Link>
                         </li>
                     </ul>
                     <div className="d-flex gap-2">
-                        <Link className="nav-link" to="/login">
-                            Login
-                        </Link>
-                        <Link className="nav-link" to="/signup">
-                            Signup
-                        </Link>
+                        {localStorage.getItem('token') ?
+                            <>
+                                <Link className="nav-link" to="/">Cart</Link>
+                                <button className="nav-link" onClick={handleLogout}>Logout</button>
+                            </>
+                            : <>
+                                <Link className="nav-link" to="/login"> Login </Link>
+                                <Link className="nav-link" to="/signup"> Signup </Link>
+                            </>}
                     </div>
                 </div>
             </div>

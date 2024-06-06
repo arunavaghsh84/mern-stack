@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 
-export default function Carousel() {
+export default function Carousel({ search, onChangeSearch: handleChangeSearch }) {
     return (
         <div id="carouselExample" className="carousel slide carousel-fade" style={{ objectFit: 'contain' }}>
             <div className="carousel-indicators">
@@ -18,7 +18,7 @@ export default function Carousel() {
             </div>
             <div className="carousel-inner" id="carousel">
                 <div className="carousel-caption z-2">
-                    <SearchBar />
+                    <SearchBar value={search} onChange={handleChangeSearch} />
                 </div>
                 <div className="carousel-item active">
                     <img
