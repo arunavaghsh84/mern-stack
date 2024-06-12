@@ -10,7 +10,7 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="navbar navbar-dark navbar-expand-lg bg-success">
+        <nav className="navbar navbar-dark navbar-expand-lg bg-success sticky-top">
             <div className="container-fluid">
                 <Link className="navbar-brand fs-1" to="/">
                     GoFood
@@ -29,19 +29,37 @@ export default function Navbar() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/"> Home </Link>
+                            <Link className="nav-link active" aria-current="page" to="/">
+                                {' '}
+                                Home{' '}
+                            </Link>
                         </li>
                     </ul>
-                    <div className="d-flex gap-2">
-                        {localStorage.getItem('token') ?
+                    <div className="d-flex gap-3">
+                        {localStorage.getItem('token') ? (
                             <>
-                                <Link className="nav-link" to="/">Cart</Link>
-                                <button className="nav-link" onClick={handleLogout}>Logout</button>
+                                <Link className="nav-link" to="/orders">
+                                    My Orders
+                                </Link>
+                                <Link className="nav-link" to="/cart">
+                                    Cart
+                                </Link>
+                                <button className="nav-link" onClick={handleLogout}>
+                                    Logout
+                                </button>
                             </>
-                            : <>
-                                <Link className="nav-link" to="/login"> Login </Link>
-                                <Link className="nav-link" to="/signup"> Signup </Link>
-                            </>}
+                        ) : (
+                            <>
+                                <Link className="nav-link" to="/login">
+                                    {' '}
+                                    Login{' '}
+                                </Link>
+                                <Link className="nav-link" to="/signup">
+                                    {' '}
+                                    Signup{' '}
+                                </Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

@@ -40,7 +40,7 @@ export default function Login() {
     return (
         <>
             <Navbar />
-            <div className="p-3 w-100 m-auto" style={{ maxWidth: '500px' }}>
+            <div className="p-3 w-100 m-auto mt-5" style={{ maxWidth: '500px', height: 'calc(100vh - 240px)' }}>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">

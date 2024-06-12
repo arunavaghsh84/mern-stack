@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -28,6 +31,7 @@ export default function Signup() {
                     alert(data.errors[0].msg);
                 } else {
                     alert('Account created successfully!');
+                    navigate('/login');
                 }
             })
             .catch((error) => {
@@ -38,7 +42,7 @@ export default function Signup() {
     return (
         <>
             <Navbar />
-            <div className="p-3 w-100 m-auto" style={{ maxWidth: '500px' }}>
+            <div className="p-3 w-100 m-auto mt-5" style={{ maxWidth: '500px', height: 'calc(100vh - 240px)' }}>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="name" className="form-label">

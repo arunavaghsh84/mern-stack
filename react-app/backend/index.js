@@ -1,5 +1,5 @@
 const express = require('express');
-require('dotenv').config()
+require('dotenv').config();
 
 const app = express();
 const port = 5000;
@@ -22,6 +22,8 @@ app.use(express.json());
 app.use('/api', require('./routes/CreateUser'));
 app.use('/api', require('./routes/Login'));
 app.use('/api', require('./routes/GetFoodItems'));
+app.use('/api', require('./routes/CreateOrder'));
+app.use('/api', require('./routes/GetOrders'));
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
